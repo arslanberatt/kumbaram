@@ -1,5 +1,3 @@
-# salon_sac
-
 A new Flutter project.
 
 ## Getting Started
