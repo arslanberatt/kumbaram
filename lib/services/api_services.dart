@@ -9,10 +9,11 @@ abstract class ApiConstants {
 }
 
 class ApiServices extends GetxService {
-  final StorageService _storageService = Get.find<StorageService>();
+  late StorageService _storageService;
   late Dio _dio;
 
   Future<ApiServices> init() async {
+    _storageService = Get.find<StorageService>();
     _dio = Dio(
       BaseOptions(
         baseUrl: ApiConstants.baseUrl,

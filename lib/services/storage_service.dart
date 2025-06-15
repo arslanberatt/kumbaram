@@ -13,7 +13,7 @@ class StorageService extends GetxController {
   //init kullandığımız için oluşturulan nesneyi döndürüyoruz
   Future<StorageService> init() async {
     _preferences = await SharedPreferences.getInstance();
-    return _preferences;
+    return this;
   }
 
   Future<bool> setValue<T>(String key, T value) async {
