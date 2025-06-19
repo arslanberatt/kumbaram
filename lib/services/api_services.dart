@@ -5,7 +5,13 @@ import 'package:salon_sac/services/storage_service.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
 abstract class ApiConstants {
-  static const baseUrl = "";
+  static const String baseUrl = 'https://gelir-gider-backend.onrender.com/api';
+  static const String login = '/auth/google';
+  static const String profile = '/auth/profile';
+  static const String categories = '/categories';
+  static const String transactions = '/transactions';
+  static const String serverClientId =
+      '759287788134-e7ddhhal45ci297q581sk841g25nsqr9.apps.googleusercontent.com';
 }
 
 class ApiServices extends GetxService {
@@ -19,13 +25,13 @@ class ApiServices extends GetxService {
         baseUrl: ApiConstants.baseUrl,
         connectTimeout: Duration(seconds: 10),
         receiveTimeout: Duration(seconds: 10),
-        contentType: "aplication/json",
+        contentType: "application/json",
       ),
     );
     _dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) async {
-          final token = _storageService.getValue<String>(StorageKeys.userToken);
+          final token = await _storageService.getValue<String>(StorageKeys.userToken);
           if (token != null) {
             options.headers['Authorization'] = 'Bearer $token';
           }

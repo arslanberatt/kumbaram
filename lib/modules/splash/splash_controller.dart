@@ -16,14 +16,20 @@ class SplashController extends BaseController {
   }
 
   Future<void> waitForServices() async {
-    while (!Get.isRegistered<StorageService>() &&
-        !Get.isRegistered<ApiServices>() &&
+    while (!Get.isRegistered<StorageService>() ||
+        !Get.isRegistered<ApiServices>() ||
         !Get.isRegistered<AuthService>()) {
       await Future.delayed(Duration(seconds: 1));
     }
   }
 
   Future<void> checkTokenAndRedirect() async {
+  final authService = Get.find<AuthService>();
+  final isAutenticated = await authService.isAuthenticated();
+  if (isAutenticated) {
+    Get.offAllNamed(AppRoutes.HOME);
+  } else {
     Get.offAllNamed(AppRoutes.LOGIN);
   }
+}
 }

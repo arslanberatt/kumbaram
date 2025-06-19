@@ -3,13 +3,13 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:salon_sac/core/app_bindings.dart';
 import 'package:salon_sac/routers/app_pages.dart';
 
-void main() {
+void main() async {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-  @override
+  @override 
   Widget build(BuildContext context) {
     return GetMaterialApp(
       getPages: AppPages.pages,
@@ -23,3 +23,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+ 
