@@ -1,7 +1,10 @@
 import 'package:get/get.dart';
+import 'package:salon_sac/repositories/category_repository.dart';
+import 'package:salon_sac/repositories/transaction_repository.dart';
 import 'package:salon_sac/services/api_services.dart';
 import 'package:salon_sac/services/auth_service.dart';
 import 'package:salon_sac/services/storage_service.dart';
+import 'package:salon_sac/services/theme_service.dart';
 
 class AppBinding implements Bindings {
   @override
@@ -11,6 +14,8 @@ class AppBinding implements Bindings {
       await service.init();
       return service;
     });
+
+    Get.put(ThemeService());
 
     await Get.putAsync<ApiServices>(() async {
       final service = ApiServices();
@@ -23,5 +28,8 @@ class AppBinding implements Bindings {
       await service.init();
       return service;
     });
+
+    Get.put(CategoryRepository());
+    Get.put(TransactionRepository());
   }
 }

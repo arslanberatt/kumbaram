@@ -5,6 +5,8 @@ import 'package:salon_sac/modules/login/login_bindings.dart';
 import 'package:salon_sac/modules/login/login_page.dart';
 import 'package:salon_sac/modules/splash/splash_bindings.dart';
 import 'package:salon_sac/modules/splash/splash_page.dart';
+import 'package:salon_sac/modules/transaction/transaction_bindings.dart';
+import 'package:salon_sac/modules/transaction/transaction_page.dart';
 
 abstract class AppRoutes {
   static const INITIAL = SPLASH;
@@ -12,6 +14,7 @@ abstract class AppRoutes {
   static const LOGIN = '/login';
   static const HOME = '/home';
   static const PROFILE = '/profile';
+  static const TRANSACTION = '/transaction';
 }
 
 class AppPages {
@@ -30,6 +33,11 @@ class AppPages {
       name: AppRoutes.HOME,
       page: () => HomePage(),
       binding: HomeBindings(),
+    ),
+    GetPage(
+      name: AppRoutes.TRANSACTION,
+      page: () => TransactionPage(),
+      binding: TransactionBindings(),
     ),
   ];
 }

@@ -1,0 +1,31 @@
+import 'package:flutter/material.dart';
+import 'package:get/state_manager.dart';
+import 'package:salon_sac/modules/transaction/transaction_controller.dart';
+
+class DescriptionInput extends GetView<TransactionController> {
+  const DescriptionInput({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      decoration: InputDecoration(
+        labelText: 'Açıklama',
+        border: OutlineInputBorder(),
+        prefixIcon: Icon(Icons.description_outlined),
+      ),
+      onChanged: (value) {
+        controller.description.value = value;
+      },
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Açıklama giriniz';
+        }
+        final amount = double.tryParse(value);
+        if (amount == null || amount <= 0) {
+          return 'Geçersiz açıklama';
+        }
+        return null;
+      },
+    );
+  }
+}
