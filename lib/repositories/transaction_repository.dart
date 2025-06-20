@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:salon_sac/models/app_transaction.dart';
+import 'package:salon_sac/models/transaction_params.dart';
 import 'package:salon_sac/services/api_services.dart';
 
 class TransactionRepository extends GetxService {
@@ -22,13 +23,13 @@ class TransactionRepository extends GetxService {
     throw Exception('Transactionlar getirilirken bir hata oluştu');
   }
 
-  Future<AppTransaction> createTransaction(AppTransaction transaction) async {
+  Future<Transaction> createTransaction(Transaction transaction) async {
     final response = await _apiServices.post(
       ApiConstants.transactions,
       data: transaction.toJson(),
     );
     if (response.statusCode == 201) {
-      return AppTransaction.fromJson(response.data);
+      return Transaction.fromJson(response.data);
     }
     throw Exception('Transactionlar eklenirken bir hata oluştu');
   }

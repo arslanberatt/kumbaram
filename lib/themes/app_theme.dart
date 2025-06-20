@@ -8,19 +8,17 @@ class AppTheme {
   static ThemeData get light {
     return ThemeData(
       brightness: Brightness.light,
-      scaffoldBackgroundColor: AppColors.greyLight,
+      scaffoldBackgroundColor: AppColors.grey,
       primaryColor: AppColors.primary,
       colorScheme: ColorScheme.light(
         primary: AppColors.primary,
-        secondary: AppColors.secondary,
-        background: AppColors.greyLight,
+        background: AppColors.grey,
         error: AppColors.error,
         surface: AppColors.white,
         onPrimary: AppColors.white,
-        onSecondary: AppColors.white,
-        onBackground: AppColors.secondary,
+        onBackground: AppColors.black,
         onError: AppColors.white,
-        onSurface: AppColors.secondary,
+        onSurface: AppColors.black,
       ),
       appBarTheme: const AppBarTheme(
         backgroundColor: AppColors.primary,
@@ -59,29 +57,31 @@ class AppTheme {
           borderRadius: BorderRadius.circular(14),
           borderSide: const BorderSide(color: AppColors.primary),
         ),
-        labelStyle: const TextStyle(color: AppColors.secondary),
+        labelStyle: const TextStyle(color: AppColors.black),
         hintStyle: const TextStyle(color: AppColors.greyDark),
       ),
       cardTheme: CardThemeData(
         color: AppColors.white,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(18),
+          borderRadius: BorderRadius.circular(0),
+          side: const BorderSide(color: AppColors.divider, width: 0.5),
         ),
+        elevation: 1,
       ),
       textTheme: const TextTheme(
         headlineLarge: TextStyle(
           fontSize: 32,
           fontWeight: FontWeight.bold,
-          color: AppColors.secondary,
+          color: AppColors.black,
         ),
         titleMedium: TextStyle(
           fontSize: 18,
           fontWeight: FontWeight.w600,
-          color: AppColors.secondary,
+          color: AppColors.black,
         ),
         bodyMedium: TextStyle(
           fontSize: 16,
-          color: AppColors.secondary,
+          color: AppColors.black,
         ),
         labelLarge: TextStyle(
           fontSize: 14,
@@ -96,22 +96,20 @@ class AppTheme {
   static ThemeData get dark {
     return ThemeData(
       brightness: Brightness.dark,
-      scaffoldBackgroundColor: AppColors.secondaryDark,
+      scaffoldBackgroundColor: AppColors.black,
       primaryColor: AppColors.primary,
       colorScheme: ColorScheme.dark(
         primary: AppColors.primary,
-        secondary: AppColors.secondaryLight,
-        background: AppColors.secondaryDark,
+        background: AppColors.black,
         error: AppColors.error,
-        surface: AppColors.secondary,
+        surface: AppColors.black,
         onPrimary: AppColors.white,
-        onSecondary: AppColors.primary,
         onBackground: AppColors.white,
         onError: AppColors.white,
         onSurface: AppColors.white,
       ),
       appBarTheme: const AppBarTheme(
-        backgroundColor: AppColors.secondary,
+        backgroundColor: AppColors.black,
         foregroundColor: AppColors.primary,
         elevation: 2,
         centerTitle: true,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
 import 'package:salon_sac/modules/transaction/transaction_controller.dart';
-import 'package:salon_sac/modules/transaction/widgets/ammount_input.dart';
+import 'package:salon_sac/modules/transaction/widgets/amount_input.dart';
 import 'package:salon_sac/modules/transaction/widgets/category_dropdown.dart';
 import 'package:salon_sac/modules/transaction/widgets/date_input.dart';
 import 'package:salon_sac/modules/transaction/widgets/description_input.dart';

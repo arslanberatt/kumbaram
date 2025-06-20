@@ -8,7 +8,9 @@ class SaveButton extends GetView<TransactionController> {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton.icon(
-      onPressed: (){},
+      onPressed: ()async{
+        await controller.createTransaction();
+      },
       label: const SizedBox(
         width: double.infinity,
         child: Text(

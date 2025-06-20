@@ -33,7 +33,7 @@ class AppTransaction {
         categoryId: json["category_id"],
         createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
         updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
-        category: json["category"] == null ? null : Category.fromJson(json["category"]),
+        category: json["Category"] == null ? null : Category.fromJson(json["Category"]),
     );
 
     Map<String, dynamic> toJson() => {

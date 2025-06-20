@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:salon_sac/core/base_controller.dart';
 import 'package:salon_sac/models/app_category.dart';
+import 'package:salon_sac/models/transaction_params.dart';
+import 'package:salon_sac/modules/dashboard/dashboard_controller.dart';
 import 'package:salon_sac/repositories/category_repository.dart';
 import 'package:salon_sac/repositories/transaction_repository.dart';
 
@@ -35,7 +37,32 @@ class TransactionController extends BaseController {
     });
   }
 
-  Future<void> createTransaction() async {}
+  Future<void> createTransaction() async {
+    try {
+      setLoading(true);
+      if (!formKey.currentState!.validate()) return null;
+      final transaction = Transaction(
+        id: '',
+        amount: amount.value,
+        description: description.value,
+        date: date.value,
+        categoryId: selectedCategoryId.value,
+        type: transactionType.value,
+        userId: '',
+      );
+      var result = await _transactionRepository.createTransaction(transaction);
+      if (result != null) {
+        Get.find<DashboardController>().refreshDashoard();
+        Get.back();
+        showSuccessSnackbar(message: 'Transaction başarıyla eklendi');
+        clearForm();
+      }
+    } catch (e) {
+      showErrorSnackbar(message: 'Transaction eklenirken hata oluştu');
+    } finally {
+      setLoading(false);
+    }
+  }
 
   Future<void> loadCategories() async {
     setLoading(true);
@@ -59,5 +86,13 @@ class TransactionController extends BaseController {
     } else {
       selectedCategoryId.value = '';
     }
+  }
+
+  void clearForm() {
+    amount.value = 0.0;
+    description.value = '';
+    date.value = DateTime.now();
+    selectedCategoryId.value = '';
+    transactionType.value = 'expense';
   }
 }

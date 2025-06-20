@@ -17,12 +17,8 @@ class DescriptionInput extends GetView<TransactionController> {
         controller.description.value = value;
       },
       validator: (value) {
-        if (value == null || value.isEmpty) {
+        if (value == null || value.trim().isEmpty) {
           return 'Açıklama giriniz';
-        }
-        final amount = double.tryParse(value);
-        if (amount == null || amount <= 0) {
-          return 'Geçersiz açıklama';
         }
         return null;
       },
