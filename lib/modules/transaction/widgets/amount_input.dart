@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
-import 'package:salon_sac/modules/transaction/transaction_controller.dart';
+import 'package:salon_sac/modules/transaction/controllers/transaction_controller.dart';
 
 class AmmountInput extends GetView<TransactionController> {
   const AmmountInput({super.key});

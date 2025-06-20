@@ -16,39 +16,54 @@ class DashboardPage extends GetView<DashboardController> {
         () => controller.isLoading
             ? Center(child: CircularProgressIndicator())
             : Column(
-              children: [
-                Expanded(flex: 1, child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    SummaryCard(
-                      title: 'Aylık Gelir',
-                      amount: controller.montlyIncome.value,
-                      icon: Icons.arrow_upward,
-                      color: AppColors.income, 
-                      gradientColors: [
-                        AppColors.income.withOpacity(0.25),
-                        AppColors.income.withOpacity(0.5),
-                      ],
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    flex: 2,
+                    child: Obx(
+                      () => ListView(
+                        scrollDirection: Axis.horizontal,
+                        padding: EdgeInsets.symmetric(horizontal: 8),
+                        children: [
+                          SummaryCard(
+                            title: 'Aylık Gelir',
+                            amount: controller.montlyIncome.value,
+                            icon: Icons.arrow_upward,
+                            color: AppColors.white,
+                            gradientColors: [
+                              AppColors.income.withOpacity(0.5),
+                              AppColors.income.withOpacity(0.7),
+                            ],
+                          ),
+                          SummaryCard(
+                            title: 'Aylık Gelir',
+                            amount: controller.montlyExpense.value,
+                            icon: Icons.arrow_downward,
+                            color: AppColors.white,
+                            gradientColors: [
+                              AppColors.expense.withOpacity(0.5),
+                              AppColors.expense.withOpacity(0.7),
+                            ],
+                          ),
+                          SummaryCard(
+                            title: 'Aylık Bakiye',
+                            amount:
+                                (controller.montlyIncome.value -
+                                controller.montlyExpense.value),
+                            icon: Icons.account_balance_wallet,
+                            color: AppColors.white,
+                            gradientColors: [
+                              AppColors.info.withOpacity(0.5),
+                              AppColors.info.withOpacity(0.7),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
-                    SummaryCard(
-                      title: 'Aylık Gelir',
-                      amount: controller.montlyExpense.value,
-                      icon: Icons.arrow_upward,
-                      color: AppColors.expense, 
-                      gradientColors: [
-                        AppColors.expense.withOpacity(0.25),
-                        AppColors.expense.withOpacity(0.5),
-                      ],
-                    ),
-                  ],
-                 
-                )),
-                Expanded(
-                child: TransactionList(),
-                flex: 8,
-                ),
+                  ),
+                  Expanded(child: TransactionList(), flex: 10),
                 ],
-            ),
+              ),
       ),
     );
   }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 import 'package:get/state_manager.dart';
-import 'package:salon_sac/modules/transaction/transaction_controller.dart';
+import 'package:salon_sac/modules/transaction/controllers/transaction_controller.dart';
+import 'package:salon_sac/modules/transaction/widgets/add_category_dialog.dart';
 import 'package:salon_sac/modules/transaction/widgets/amount_input.dart';
 import 'package:salon_sac/modules/transaction/widgets/category_dropdown.dart';
 import 'package:salon_sac/modules/transaction/widgets/date_input.dart';
@@ -31,7 +33,9 @@ class TransactionPage extends GetView<TransactionController> {
                         children: [
                           Expanded(child: CategoryDropdown()),
                           IconButton(
-                            onPressed: () {},
+                            onPressed: () async{
+                              final newCategory = await Get.dialog(AddCategoryDialog());
+                            },
                             icon: Icon(Icons.add_circle_outline),
                           ),
                         ],

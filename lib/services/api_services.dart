@@ -31,7 +31,7 @@ class ApiServices extends GetxService {
     _dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) async {
-          final token = await _storageService.getValue<String>(StorageKeys.userToken);
+          final token = _storageService.getValue<String>(StorageKeys.userToken);
           if (token != null) {
             options.headers['Authorization'] = 'Bearer $token';
           }

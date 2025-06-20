@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:salon_sac/modules/dashboard/dashboard_controller.dart';
+import 'package:salon_sac/themes/app_colors.dart';
 
 class SummaryCard extends GetView<DashboardController> {
   final String title;
@@ -19,13 +21,26 @@ class SummaryCard extends GetView<DashboardController> {
 
   @override
   Widget build(BuildContext context) {
+    final ammountFormat = NumberFormat.currency(
+      locale: 'tr_TR',
+      symbol: '₺',
+      decimalDigits: 0,
+    );
     return Container(
       width: 150,
-      margin: const EdgeInsets.symmetric(horizontal: 4),
+      margin: const EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: gradientColors,
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(16),
+      ),
       child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               children: [
@@ -33,17 +48,15 @@ class SummaryCard extends GetView<DashboardController> {
                 Expanded(
                   child: Text(
                     title,
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 16, color: AppColors.white),
                   ),
                 ),
               ],
             ),
-            Text(amount.toStringAsFixed(2),
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: color,
-                )),
+            Text(
+              '${((controller.montlyIncome.value - controller.montlyExpense.value == amount) || (controller.montlyIncome.value == amount)) && amount > 0 ? '+ ' : ''}${ammountFormat.format(amount)}',
+              style: TextStyle(fontSize: 18, color: color),
+            ),
           ],
         ),
       ),

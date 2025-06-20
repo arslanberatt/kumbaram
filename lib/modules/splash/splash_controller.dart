@@ -1,6 +1,4 @@
 import 'package:get/get.dart';
-import 'package:get/get_instance/get_instance.dart';
-import 'package:get/state_manager.dart';
 import 'package:salon_sac/core/base_controller.dart';
 import 'package:salon_sac/routers/app_pages.dart';
 import 'package:salon_sac/services/api_services.dart';
